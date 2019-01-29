@@ -1,4 +1,4 @@
-﻿using BookStore.ProductService.Configuration;
+﻿using BookStore.Configuration.Constants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.ProductService.Controller

@@ -1,4 +1,4 @@
-﻿namespace BookStore.ProductService.Configuration
+﻿namespace BookStore.Configuration.Constants
 {
     public class Routes
     {
