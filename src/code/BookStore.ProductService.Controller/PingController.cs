@@ -5,8 +5,7 @@ namespace BookStore.ProductService.Controller
 {
     [Route(Routes.Ping)]
     public class PingController : ControllerBase
-    {
-        // GET api/values
+    {        
         [HttpGet]
         public string Get()
         {

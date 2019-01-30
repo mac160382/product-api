@@ -10,10 +10,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="4.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Examples" Version="2.9.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="4.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BookStore.ProductService.ApiExamples\BookStore.ProductService.ApiExamples.csproj" />
     <ProjectReference Include="..\BookStore.ProductService.Configuration\BookStore.Configuration.csproj" />
+    <ProjectReference Include="..\BookStore.ProductService.Domain\BookStore.ProductService.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
