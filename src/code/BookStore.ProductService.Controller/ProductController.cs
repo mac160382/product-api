@@ -29,7 +29,8 @@ namespace BookStore.ProductService.Controller
         [Consumes(MimeType.ApplicationJson)]
         [Produces(MimeType.ApplicationJson, Type = typeof(Product))]
         [ActionName(Actions.AddAsync)]
-        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [SwaggerRequestExample(typeof(Product), typeof(ProductAddExample))]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.Created)]
         [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(Product))]
         [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(ProductAddExample))]
         ////[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.NotFound)]
@@ -41,10 +42,9 @@ namespace BookStore.ProductService.Controller
         [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.InternalServerError)]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Type = typeof(ErrorResponse))]
         [SwaggerResponseExample((int)HttpStatusCode.InternalServerError, typeof(ErrorResponse500Example))]
-
         public IActionResult Add([FromBody]Product product)
         {
-            return this.Ok(product);
+            return this.CreatedAtAction(Actions.AddAsync, product);
         }
 
         [HttpPut]
