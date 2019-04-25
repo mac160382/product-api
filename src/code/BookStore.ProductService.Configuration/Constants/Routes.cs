@@ -6,7 +6,7 @@
 
         public const string Ping = "/ping";
 
-        public const string ProductList = "product-list";
+        public const string ProductList = "/product-list";
 
         public const string Id = "{id:guid}";
     }

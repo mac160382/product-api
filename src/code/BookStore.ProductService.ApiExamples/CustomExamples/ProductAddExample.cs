@@ -9,8 +9,7 @@ namespace BookStore.ProductService.ApiExamples
         public object GetExamples()
         {
             return new Product
-            {
-                Id = Guid.NewGuid(),
+            {                
                 Name = "Product Tests",
                 Description = "detail reference to product",
                 Image = "the url image",

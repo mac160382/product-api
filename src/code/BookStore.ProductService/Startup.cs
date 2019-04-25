@@ -26,6 +26,7 @@ namespace BookStore.ProductService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddHttpContextAccessor();
             ConfigureServicesSwagger(services);
         }
 
