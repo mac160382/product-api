@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.ProductService.Models
 {
@@ -17,16 +18,16 @@ namespace BookStore.ProductService.Models
         /// <summary>
         /// The name of product
         /// </summary>
-        ////[Required]
-        ////[StringLength(150)]
+        [Required]
+        [StringLength(150)]
         [DisplayName(DisplayNames.Name)]
         public string Name { get; set; }
 
         /// <summary>   
         /// The descripcion of product
         /// </summary>
-        ////[Required]
-        ////[StringLength(150)]
+        [Required]
+        [StringLength(150)]
         [DisplayName(DisplayNames.Description)]
         public string Description { get; set; }
 
@@ -40,14 +41,14 @@ namespace BookStore.ProductService.Models
         /// <summary>
         /// The unit price of product
         /// </summary>
-        //[Required]
+        [Required]
         [DisplayName(DisplayNames.Price)]
         public decimal Price { get; set; }
 
         /// <summary>
         /// The category releated to product
         /// </summary>
-        ////[Required]
+        [Required]
         [DisplayName(DisplayNames.CategoryId)]
         public Guid CategoryId { get; set; }
     }
