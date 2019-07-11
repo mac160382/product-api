@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.ProductService.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.Configuration", "BookStore.ProductService.Configuration\BookStore.Configuration.csproj", "{15D46AB7-02DC-4D3C-9DD9-2043C263909B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.ProductService.ApiExamples", "BookStore.ProductService.ApiExamples\BookStore.ProductService.ApiExamples.csproj", "{C6A0A12B-8568-4FB9-8DDD-59E960254246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.ProductService.ApiExamples", "BookStore.ProductService.ApiExamples\BookStore.ProductService.ApiExamples.csproj", "{C6A0A12B-8568-4FB9-8DDD-59E960254246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.ProductService.Models", "BookStore.ProductService.Domain\BookStore.ProductService.Models.csproj", "{7EDBD392-742A-4D18-81B8-3B35F80E5ADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.ProductService.Models", "BookStore.ProductService.Domain\BookStore.ProductService.Models.csproj", "{7EDBD392-742A-4D18-81B8-3B35F80E5ADE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.ProductServiceTest", "BookStore.ProductServiceTest\BookStore.ProductServiceTest.csproj", "{3C14BB01-3901-45A4-A6C3-54E114782999}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7EDBD392-742A-4D18-81B8-3B35F80E5ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EDBD392-742A-4D18-81B8-3B35F80E5ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EDBD392-742A-4D18-81B8-3B35F80E5ADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C14BB01-3901-45A4-A6C3-54E114782999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C14BB01-3901-45A4-A6C3-54E114782999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C14BB01-3901-45A4-A6C3-54E114782999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C14BB01-3901-45A4-A6C3-54E114782999}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

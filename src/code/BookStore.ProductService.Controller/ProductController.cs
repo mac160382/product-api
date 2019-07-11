@@ -50,13 +50,14 @@ namespace BookStore.ProductService.Controller
                 }
             });
         }
-        
+
         /// <summary>
         /// Get product by identifier
         /// </summary>
         /// <param name="id">The product identifier</param>
         /// <returns>The specific product by id</returns>
-        [HttpGet(Routes.Id)]
+        ////[HttpGet(Routes.Id)]
+        [HttpGet]
         [Consumes(MimeType.ApplicationJson)]
         [Produces(MimeType.ApplicationJson, Type = typeof(Product))]
         [ActionName(Actions.GetById)]
@@ -109,6 +110,7 @@ namespace BookStore.ProductService.Controller
         [SwaggerResponseExample((int)HttpStatusCode.InternalServerError, typeof(ErrorResponse500Example))]
         public IActionResult Add([FromBody]Product product)
         {
+            product.Id = Guid.NewGuid();
             return this.CreatedAtAction(Actions.GetById, product);
         }
 
@@ -120,7 +122,7 @@ namespace BookStore.ProductService.Controller
         [HttpPut(Routes.Id)]
         [Consumes(MimeType.ApplicationJson)]
         [Produces(MimeType.ApplicationJson, Type = typeof(Product))]
-        [ActionName(Actions.Update)]        
+        [ActionName(Actions.Update)]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.Created)]
         [SwaggerResponse((int)HttpStatusCode.Created, Type = typeof(Product))]
         [SwaggerResponseExample((int)HttpStatusCode.Created, typeof(ProductExample))]
@@ -157,7 +159,7 @@ namespace BookStore.ProductService.Controller
         [SwaggerResponseExample((int)HttpStatusCode.InternalServerError, typeof(ErrorResponse500Example))]
         public IActionResult Delete([FromRoute] Guid id)
         {
-            return this.Ok(); 
+            return this.Ok();
         }
     }
 }

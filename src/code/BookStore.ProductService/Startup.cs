@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
+using System.IO;
 using System.Reflection;
 
 namespace BookStore.ProductService
@@ -53,6 +55,14 @@ namespace BookStore.ProductService
             services.AddSwaggerGen(sw =>
             {
                 sw.SwaggerDoc(apiVersion, info);
+
+                // Set the comments path for the Swagger JSON and UI.
+                var basePath = AppContext.BaseDirectory;
+                var files = Directory.GetFiles(basePath, "*.xml");
+                foreach (var file in files)
+                {
+                    sw.IncludeXmlComments(file);
+                }
             });
         }
 
@@ -63,6 +73,7 @@ namespace BookStore.ProductService
             {
                 sw.SwaggerEndpoint(string.Format(ApiMetaData.DocumentationEndPoint, apiVersion), ApiMetaData.DocumentationDescription);
                 sw.SupportedSubmitMethods(Array.Empty<SubmitMethod>());
+                sw.RoutePrefix = string.Empty;
             });
         }
     }
