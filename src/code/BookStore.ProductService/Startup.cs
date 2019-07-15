@@ -1,4 +1,5 @@
 ﻿using BookStore.Configuration.Constants;
+using BookStore.ProductService.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,8 +28,8 @@ namespace BookStore.ProductService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();            
-            ConfigureServicesSwagger(services);
+            services.AddMvc();
+            services.Configure(apiVersion);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,41 +41,7 @@ namespace BookStore.ProductService
             }
 
             app.UseMvc();
-            ConfigureSwagger(app);            
-        }
-
-        private void ConfigureServicesSwagger(IServiceCollection services)
-        {
-            var info = new Info
-            {
-                Title = ApiMetaData.DocumentationTitle,
-                Version = apiVersion,
-                Description = ApiMetaData.DocumentationDescription
-            };
-
-            services.AddSwaggerGen(sw =>
-            {
-                sw.SwaggerDoc(apiVersion, info);
-
-                // Set the comments path for the Swagger JSON and UI.
-                var basePath = AppContext.BaseDirectory;
-                var files = Directory.GetFiles(basePath, "*.xml");
-                foreach (var file in files)
-                {
-                    sw.IncludeXmlComments(file);
-                }
-            });
-        }
-
-        private void ConfigureSwagger(IApplicationBuilder app)
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI(sw =>
-            {
-                sw.SwaggerEndpoint(string.Format(ApiMetaData.DocumentationEndPoint, apiVersion), ApiMetaData.DocumentationDescription);
-                sw.SupportedSubmitMethods(Array.Empty<SubmitMethod>());
-                sw.RoutePrefix = string.Empty;
-            });
+            app.Configure(apiVersion);     
         }
     }
 }
