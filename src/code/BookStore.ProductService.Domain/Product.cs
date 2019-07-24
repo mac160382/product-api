@@ -19,7 +19,6 @@ namespace BookStore.ProductService.Models
         /// The name of product
         /// </summary>
         [Required]
-        [StringLength(150)]
         [DisplayName(DisplayNames.Name)]
         public string Name { get; set; }
 
@@ -27,7 +26,6 @@ namespace BookStore.ProductService.Models
         /// The descripcion of product
         /// </summary>
         [Required]
-        [StringLength(150)]
         [DisplayName(DisplayNames.Description)]
         public string Description { get; set; }
 

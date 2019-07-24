@@ -1,5 +1,7 @@
 ﻿using BookStore.Configuration.Constants;
 using BookStore.ProductService.Extensions;
+using BookStore.ProductService.Models.Validators;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,9 +30,12 @@ namespace BookStore.ProductService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.Configure(apiVersion);
-        }
+            services.Configure(apiVersion)
+                    .AddMvcCore()
+                    .AddJsonFormatters()
+                    .AddApiExplorer()
+                    .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductValidator>());
+        } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -40,8 +45,7 @@ namespace BookStore.ProductService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
-            app.Configure(apiVersion);     
+            app.Configure(apiVersion);
         }
     }
 }
