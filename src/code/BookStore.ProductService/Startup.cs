@@ -36,7 +36,7 @@ namespace BookStore.ProductService
                     .AddJsonFormatters()
                     .AddJsonCamelFormatters()
                     .AddApiExplorer()
-                    .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductValidator>());
+                    .AddFluentValidations();
         } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

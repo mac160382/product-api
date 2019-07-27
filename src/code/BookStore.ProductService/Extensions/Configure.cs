@@ -1,4 +1,6 @@
 ﻿using BookStore.Configuration.Constants;
+using BookStore.ProductService.Models.Validators;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -35,6 +37,14 @@ namespace BookStore.ProductService.Extensions
                                                                     };
                 options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Include;
                 options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            });
+        }
+
+        public static IMvcCoreBuilder AddFluentValidations(this IMvcCoreBuilder builder)
+        {
+            return builder.AddFluentValidation(x => 
+            {
+                x.RegisterValidatorsFromAssemblyContaining<ProductValidator>();
             });
         }
     }
