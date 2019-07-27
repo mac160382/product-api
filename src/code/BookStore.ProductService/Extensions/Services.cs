@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.ProductService.Extensions
 {
-    public static class ServiceSwagger
+    public static class Services
     {
         public static IServiceCollection SwaggerConfigure(this IServiceCollection services, string apiVersion)
         {

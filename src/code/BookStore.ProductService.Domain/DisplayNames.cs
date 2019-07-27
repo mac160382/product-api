@@ -7,6 +7,6 @@
         public const string Description = "description";
         public const string Image = "image";
         public const string Price = "price";
-        public const string CategoryId = "categoryId";
+        public const string CategoryId = "category_id";
     }
 }

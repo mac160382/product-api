@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
+using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
@@ -33,6 +34,7 @@ namespace BookStore.ProductService
             services.SwaggerConfigure(apiVersion)
                     .AddMvcCore()
                     .AddJsonFormatters()
+                    .AddJsonCamelFormatters()
                     .AddApiExplorer()
                     .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductValidator>());
         } 
