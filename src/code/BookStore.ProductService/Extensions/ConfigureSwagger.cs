@@ -10,7 +10,7 @@ namespace BookStore.ProductService.Extensions
 {
     public static class ConfigureSwagger
     {
-        public static IApplicationBuilder Configure(this IApplicationBuilder app, string apiVersion)
+        public static IApplicationBuilder SwaggerConfigure(this IApplicationBuilder app, string apiVersion)
         {
             app.UseSwagger();
             app.UseSwaggerUI(sw =>

@@ -30,7 +30,7 @@ namespace BookStore.ProductService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure(apiVersion)
+            services.SwaggerConfigure(apiVersion)
                     .AddMvcCore()
                     .AddJsonFormatters()
                     .AddApiExplorer()
@@ -45,7 +45,7 @@ namespace BookStore.ProductService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Configure(apiVersion).UseMvc();            
+            app.SwaggerConfigure(apiVersion).UseMvc();            
         }
     }
 }

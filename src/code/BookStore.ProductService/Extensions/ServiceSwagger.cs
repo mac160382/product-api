@@ -11,7 +11,7 @@ namespace BookStore.ProductService.Extensions
 {
     public static class ServiceSwagger
     {
-        public static IServiceCollection Configure(this IServiceCollection services, string apiVersion)
+        public static IServiceCollection SwaggerConfigure(this IServiceCollection services, string apiVersion)
         {
 
             var info = new Info
