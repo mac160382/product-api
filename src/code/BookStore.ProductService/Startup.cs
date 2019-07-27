@@ -34,7 +34,7 @@ namespace BookStore.ProductService
             services.SwaggerConfigure(apiVersion)
                     .AddMvcCore()
                     .AddJsonFormatters()
-                    .AddJsonCamelFormatters()
+                    .AddJsonCamelCaseOptions()
                     .AddApiExplorer()
                     .AddFluentValidations();
         } 
@@ -42,12 +42,9 @@ namespace BookStore.ProductService
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.SwaggerConfigure(apiVersion).UseMvc();            
+            app.SwaggerConfigure(apiVersion)
+               .UseMvc()
+               .UseIf(env.IsDevelopment(), appBuilder => appBuilder.UseDeveloperExceptionPage());            
         }
     }
 }

@@ -1,15 +1,8 @@
-﻿using BookStore.Configuration.Constants;
-using BookStore.ProductService.Models.Validators;
-using FluentValidation.AspNetCore;
+﻿
+using BookStore.Configuration.Constants;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookStore.ProductService.Extensions
 {
@@ -28,24 +21,9 @@ namespace BookStore.ProductService.Extensions
             return app;
         }
 
-        public static IMvcCoreBuilder AddJsonCamelFormatters(this IMvcCoreBuilder builder)
+        public static IApplicationBuilder UseIf(this IApplicationBuilder app, bool condition, Func<IApplicationBuilder, IApplicationBuilder> action)
         {
-            return builder.AddJsonOptions(options => {
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver
-                                                                    {
-                                                                        NamingStrategy = new SnakeCaseNamingStrategy()
-                                                                    };
-                options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Include;
-                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-            });
-        }
-
-        public static IMvcCoreBuilder AddFluentValidations(this IMvcCoreBuilder builder)
-        {
-            return builder.AddFluentValidation(x => 
-            {
-                x.RegisterValidatorsFromAssemblyContaining<ProductValidator>();
-            });
+            return condition ? action(app) : app;
         }
     }
 }

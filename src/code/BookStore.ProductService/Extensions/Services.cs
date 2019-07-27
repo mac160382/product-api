@@ -1,11 +1,12 @@
 ﻿using BookStore.Configuration.Constants;
+using BookStore.ProductService.Models.Validators;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookStore.ProductService.Extensions
 {
@@ -35,6 +36,26 @@ namespace BookStore.ProductService.Extensions
             });
 
             return services;
+        }
+
+        public static IMvcCoreBuilder AddJsonCamelCaseOptions(this IMvcCoreBuilder builder)
+        {
+            return builder.AddJsonOptions(options => {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy()
+                };
+                options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Include;
+                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            });
+        }
+
+        public static IMvcCoreBuilder AddFluentValidations(this IMvcCoreBuilder builder)
+        {
+            return builder.AddFluentValidation(x =>
+            {
+                x.RegisterValidatorsFromAssemblyContaining<ProductValidator>();
+            });
         }
     }
 }
