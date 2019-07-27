@@ -17,12 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookStore.ProductService.ApiExamples\BookStore.ProductService.ApiExamples.csproj" />
     <ProjectReference Include="..\BookStore.ProductService.Configuration\BookStore.Configuration.csproj" />
     <ProjectReference Include="..\BookStore.ProductService.Controller\BookStore.ProductService.Controller.csproj" />
-    <ProjectReference Include="..\BookStore.ProductService.Domain\BookStore.ProductService.Models.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿using BookStore.Configuration.Constants;
 using BookStore.ProductService.ApiExamples;
+using BookStore.ProductService.Controller.Filters;
 using BookStore.ProductService.Models;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -108,6 +109,7 @@ namespace BookStore.ProductService.Controller
         [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.InternalServerError)]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Type = typeof(ErrorResponse))]
         [SwaggerResponseExample((int)HttpStatusCode.InternalServerError, typeof(ErrorResponse500Example))]
+        [ModelStateFilter]
         public IActionResult Add([FromBody]Product product)
         {
             product.Id = Guid.NewGuid();

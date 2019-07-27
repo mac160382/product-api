@@ -45,7 +45,7 @@ namespace BookStore.ProductService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Configure(apiVersion);
+            app.Configure(apiVersion).UseMvc();            
         }
     }
 }

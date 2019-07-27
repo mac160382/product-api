@@ -17,7 +17,7 @@ namespace BookStore.ProductService.Models.Validators
             RuleFor(x => x.Name).NotNull().NotEmpty().Length(0, 150);
             RuleFor(x => x.Description).Length(0, 150);
             RuleFor(x => x.Price).GreaterThan(0);
-            RuleFor(x => x.CategoryId).NotDefaultGuidValidator();
+            RuleFor(x => x.CategoryId).NotNull().NotDefaultGuidValidator();
         }
     }
 }
