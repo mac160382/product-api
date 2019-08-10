@@ -42,8 +42,8 @@ namespace BookStore.ProductService
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.SwaggerConfigure(apiVersion)
-               .UseMvc()
+            app.UseMvc()
+               .SwaggerConfigure(apiVersion)               
                .UseIf(env.IsDevelopment(), appBuilder => appBuilder.UseDeveloperExceptionPage());            
         }
     }
