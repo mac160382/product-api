@@ -4,6 +4,8 @@ using BookStore.ProductService.Models.Validators;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
@@ -31,6 +33,14 @@ namespace BookStore.ProductService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApiVersioning(o => {
+                o.ReportApiVersions = true;
+                o.AssumeDefaultVersionWhenUnspecified = true;
+                o.DefaultApiVersion = new ApiVersion(1, 0);
+                ////o.ApiVersionReader = new MediaTypeApiVersionReader();
+                ////o.ApiVersionSelector = new CurrentImplementationApiVersionSelector(o);
+            });
+
             services.SwaggerConfigure(apiVersion)
                     .AddMvcCore()
                     .AddJsonFormatters()

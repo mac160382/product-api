@@ -15,12 +15,16 @@ namespace BookStore.ProductService.Controller
     /// The Product Controller
     /// </summary>
     [Route(Routes.Product)]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
+    [ApiController]
     public class ProductController : ControllerBase
     {
         /// <summary>
         /// Get all products
         /// </summary>
         /// <returns>List of Product</returns>
+        [MapToApiVersion("1.0")]
         [HttpGet(Routes.ProductList)]
         [Consumes(MimeType.ApplicationJson)]
         [Produces(MimeType.ApplicationJson, Type = typeof(Product))]
@@ -48,6 +52,39 @@ namespace BookStore.ProductService.Controller
                     Description = nameof(Product.Description),
                     Price = 12.25M,
                     CategoryId = Guid.NewGuid()
+                }
+            });
+        }
+
+        /// <summary>
+        /// Get all products
+        /// </summary>
+        /// <returns>List of Product</returns>
+        [MapToApiVersion("2.0")]
+        [HttpGet(Routes.ProductList)]
+        [Consumes(MimeType.ApplicationJson)]
+        [Produces(MimeType.ApplicationJson, Type = typeof(Product))]
+        [ActionName(Actions.GetById)]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(IEnumerable<Product>))]
+        [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(ProductAllExample))]
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(ErrorResponse))]
+        [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(ErrorResponse400Example))]
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.NotFound)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Type = typeof(ErrorResponse))]
+        [SwaggerResponseExample((int)HttpStatusCode.NotFound, typeof(ErrorResponse404Example))]
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.InternalServerError)]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Type = typeof(ErrorResponse))]
+        [SwaggerResponseExample((int)HttpStatusCode.InternalServerError, typeof(ErrorResponse500Example))]
+        public IActionResult GetList2()
+        {
+            return this.Ok(new List<ProductV2>
+            {
+                new ProductV2
+                {
+                    Id = Guid.NewGuid(),
+                    Name = nameof(Product.Name),
                 }
             });
         }
