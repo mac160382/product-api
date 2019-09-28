@@ -24,9 +24,6 @@ namespace BookStore.ProductService
 {
     public class Startup
     {
-        private static Version runtimeVersion = Assembly.GetExecutingAssembly().GetName().Version;
-        private static string apiVersion = String.Format(ApiMetaData.AssemblyVersionFormat, runtimeVersion.Major, runtimeVersion.Minor);
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -37,29 +34,14 @@ namespace BookStore.ProductService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApiVersioning(o => {
-                o.ReportApiVersions = true;
-                o.AssumeDefaultVersionWhenUnspecified = true;
-                o.DefaultApiVersion = new ApiVersion(1, 0);
-                ////o.ApiVersionReader = new MediaTypeApiVersionReader();
-                ////o.ApiVersionSelector = new CurrentImplementationApiVersionSelector(o);
-            });
-
-            services.SwaggerConfigure(apiVersion)
+            services.ApiVersioning()
+                    .SwaggerConfigure()
                     .AddMvcCore()
                     .AddJsonFormatters()
                     .AddJsonCamelCaseOptions()
                     .AddApiExplorer()
                     .AddFluentValidations();
         } 
-
-        ////// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        ////public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        ////{
-        ////    app.UseMvc()
-        ////       .SwaggerConfigure(apiVersion)               
-        ////       .UseIf(env.IsDevelopment(), appBuilder => appBuilder.UseDeveloperExceptionPage());            
-        ////}
 
         /// <summary>
         /// Configures the application using the provided builder, hosting environment, and API version description provider.

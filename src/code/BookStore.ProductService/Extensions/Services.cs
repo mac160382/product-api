@@ -2,6 +2,7 @@
 using BookStore.ProductService.Models.Validators;
 using BookStore.ProductService.SwaggerConfig;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -15,7 +16,7 @@ namespace BookStore.ProductService.Extensions
 {
     public static class Services
     {
-        public static IServiceCollection SwaggerConfigure(this IServiceCollection services, string apiVersion)
+        public static IServiceCollection SwaggerConfigure(this IServiceCollection services)
         {
             services.AddVersionedApiExplorer(
                 options =>
@@ -43,6 +44,19 @@ namespace BookStore.ProductService.Extensions
                 {
                     sw.IncludeXmlComments(file);
                 }
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection ApiVersioning(this IServiceCollection services)
+        {
+            services.AddApiVersioning(o => {
+                o.ReportApiVersions = true;
+                o.AssumeDefaultVersionWhenUnspecified = true;
+                o.DefaultApiVersion = new ApiVersion(1, 0);
+                ////o.ApiVersionReader = new MediaTypeApiVersionReader();
+                ////o.ApiVersionSelector = new CurrentImplementationApiVersionSelector(o);
             });
 
             return services;
